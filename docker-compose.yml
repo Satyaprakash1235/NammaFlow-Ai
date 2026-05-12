@@ -1,0 +1,44 @@
+
+services:
+  backend:
+    build:
+      context: ./traffic-system/backend
+    ports:
+      - "8001:8001"
+    environment:
+      - PORT=8001
+      - TOMTOM_API_KEY=${TOMTOM_API_KEY}
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - OPENWEATHER_API_KEY=${OPENWEATHER_API_KEY}
+      - MONGODB_URL=mongodb://mongo:27017
+    volumes:
+      - ./traffic-system/backend:/app
+      - ./traffic-system/model:/model
+      - /app/__pycache__
+    depends_on:
+      - mongo
+    restart: always
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    restart: always
+
+  frontend:
+    build:
+      context: ./traffic-system/frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: always
+
+networks:
+  default:
+    name: traffic-net
+
+volumes:
+  mongo-data:
