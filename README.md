@@ -1,6 +1,6 @@
 # 🚦 Smart Bengaluru Traffic System
 
-An advanced, AI-driven traffic congestion prediction and risk analysis system specifically designed for the unique urban challenges of Bengaluru.
+An advanced, AI-driven traffic congestion prediction and risk analysis system specifically designed for the unique urban challenges of Bengaluru
 
 ![Project Preview](/traffic-system/frontend/public/images/hero.png)
 
